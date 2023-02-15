@@ -3,7 +3,9 @@ pipeline {
   stages {
     stage('version') {
       steps {
-        sh 'python --version'
+        withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin']) {
+          sh 'python --version'
+        }
       }
     }
     stage('hello') {
