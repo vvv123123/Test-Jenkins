@@ -1,8 +1,6 @@
 pipeline {
   agent any
-//   environment {
-//    PATH = "${PATH}" + ";c:\\Windows\\System32"
-//  }
+
   stages {
     stage('version') {
       steps {
