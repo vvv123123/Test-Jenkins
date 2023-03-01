@@ -2,14 +2,24 @@ pipeline {
   agent any
 
   stages {
-    stage('version') {
+    stage('Create VENV') {
       steps {
-          bat 'python --version'
+          bat 'python -m venv env'
       }
     }
-    stage('hello') {
+    stage('Activate VENV') {
       steps {
-        bat 'python hello.py'
+        bat 'env\\Scripts\\activate'
+      }
+    }
+    stage('Install all requirements') {
+      steps {
+        bat 'pip install -r requirements.txt'
+      }
+    }
+    stage('Run tests via Pytest') {
+      steps {
+        bat 'pytest calculator_tests/e2e_tests.py'
       }
     }
   }
