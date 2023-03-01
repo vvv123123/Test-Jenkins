@@ -27,5 +27,11 @@ pipeline {
         bat 'allure serve allure_reports'
       }
     }
+    stage('Stop running the Allure server') {
+      steps {
+        bat 'Ctrl+C'
+        bat 'y'
+      }
+    }
   }
 }
