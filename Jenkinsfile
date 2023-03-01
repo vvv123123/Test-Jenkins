@@ -22,12 +22,18 @@ pipeline {
         bat 'pytest --alluredir=allure_reports  calculator_tests/e2e_tests.py'
       }
     }
-    stage('Generating Allure report') {
-      steps {
-        bat 'allure serve allure_reports'
-        bat 'Ctrl+C'
-        bat 'y'
-      }
+    stage('reports') {
+        steps {
+         script {
+            allure([
+                    includeProperties: false,
+                    jdk: '',
+                    properties: [],
+                    reportBuildPolicy: 'ALWAYS',
+                    results: [[path: 'target/allure_reports']]
+            ])
+            }
+        }
     }
 //     stage('Stop running the Allure server') {
 //       steps {
