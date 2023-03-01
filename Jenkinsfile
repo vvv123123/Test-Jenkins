@@ -19,7 +19,7 @@ pipeline {
     }
     stage('Run tests via Pytest') {
       steps {
-        bat 'pytest calculator_tests/e2e_tests.py'
+        bat 'pytest --alluredir=allure_reports  calculator_tests/e2e_tests.py'
       }
     }
   }
