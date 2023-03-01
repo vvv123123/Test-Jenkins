@@ -22,5 +22,18 @@ pipeline {
         bat 'pytest --alluredir=allure_reports  calculator_tests/e2e_tests.py'
       }
     }
+    stage('Generating Allure reports') {
+    steps {
+    script {
+            allure([
+                    includeProperties: false,
+                    jdk: '',
+                    properties: [],
+                    reportBuildPolicy: 'ALWAYS',
+                    results: [[path: 'allure_reports']]
+            ])
+    }
+    }
+}
   }
 }
